@@ -1,0 +1,43 @@
+#binary_timer {
+    background-color: black;
+    width: 560px;
+    height: 60px;
+    padding: 2px;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+#binary_timer > div {
+    margin: 2px;
+    padding: 2px;
+
+    background-color: grey;
+    transition: background-color 300ms ease;
+}
+
+#binary_timer > div.cell_on {
+    background-color: white;
+    transition: background-color 300ms ease;
+}
+
+#binary_timer.anim_standby_blink > div {
+    animation: standby_blink 5s infinite;
+}
+
+@keyframes standby_blink {
+    0% {
+        background-color: grey;
+    }
+    50% {
+        background-color: white;
+    }
+    100% {
+        background-color: grey;
+    }
+}
+
+div.timer_detail {
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+}
