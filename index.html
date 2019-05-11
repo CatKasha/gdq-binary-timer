@@ -10,27 +10,27 @@
         <div class="cell_1_2"></div>
         <div class="cell_1_3"></div>
         <div class="cell_1_4"></div>
-        
+
         <div class="cell_1_5"></div>
         <div class="cell_1_6"></div>
         <div class="cell_2_1"></div>
         <div class="cell_2_2"></div>
-        
+
         <div class="cell_2_3"></div>
         <div class="cell_2_4"></div>
         <div class="cell_2_5"></div>
         <div class="cell_2_6"></div>
-        
+
         <div class="cell_3_1"></div>
         <div class="cell_3_2"></div>
         <div class="cell_3_3"></div>
         <div class="cell_3_4"></div>
-        
+
         <div class="cell_3_5"></div>
         <div class="cell_3_6"></div>
         <div class="cell_4_1"></div>
         <div class="cell_4_2"></div>
-        
+
         <div class="cell_4_3"></div>
         <div class="cell_4_4"></div>
         <div class="cell_4_5"></div>
@@ -57,6 +57,16 @@
     <button onclick="removeAllCellOn()">Turn off all enabled cells</button>
     <button onclick="standbyBlink()">Turn on standby blink</button>
     <button onclick="removeStandbyBlink()">Turn off standby blink</button>
+
+    <br><br>
+
+    <button onclick="startTimerFrom()">Start timer from</button>
+    <div class="start_timer_from">
+        <div>Hours:</div>        <input type="number" min="0" max="11" value="0" class="hours">
+        <div>Minutes:</div>      <input type="number" min="0" max="59" value="0" class="minutes">
+        <div>Seconds:</div>      <input type="number" min="0" max="59" value="0" class="seconds">
+        <div>Milliseconds:</div> <input type="number" min="0" max="999" value="0" class="milliseconds">
+    </div>
 
     <script type="text/javascript" src="script.js"></script>
 </body>

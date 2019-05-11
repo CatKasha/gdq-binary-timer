@@ -22,10 +22,10 @@ function removeStandbyBlink() {
 
 
 function startTimer() {
-    let hour = 0;
-    let minute = 0;
-    let second = 0;
-    let milisecond = 0;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    let miliseconds = 0;
 
     let numbersToConvert = [];
 
@@ -43,39 +43,39 @@ function startTimer() {
         document.getElementsByClassName("ms_time")[0].innerHTML = elapsedTime;
 
 
-        hour = Math.floor(elapsedTime / 3600000);
-        minute = Math.floor(elapsedTime / 60000) - Math.floor(elapsedTime / 3600000) * 60;
-        second = Math.floor(elapsedTime / 1000) - Math.floor(elapsedTime / 60000) * 60;
-        milisecond = elapsedTime % 1000;
+        hours = Math.floor(elapsedTime / 3600000);
+        minutes = Math.floor(elapsedTime / 60000) - Math.floor(elapsedTime / 3600000) * 60;
+        seconds = Math.floor(elapsedTime / 1000) - Math.floor(elapsedTime / 60000) * 60;
+        miliseconds = elapsedTime % 1000;
 
         //show timer time
-        document.getElementsByClassName("timer_time")[0].innerHTML = (hour + ":" + minute + ":" + second + "." + milisecond);
+        document.getElementsByClassName("timer_time")[0].innerHTML = (hours + ":" + minutes + ":" + seconds + "." + miliseconds);
 
 
-        numbersToConvert[0] = hour;
+        numbersToConvert[0] = hours;
 
-        if (minute >= 10){
-            numbersToConvert[1] = Number(String(minute).charAt(0));
-            numbersToConvert[2] = Number(String(minute).charAt(1));
+        if (minutes >= 10){
+            numbersToConvert[1] = Number(String(minutes).charAt(0));
+            numbersToConvert[2] = Number(String(minutes).charAt(1));
         }
         else {
             numbersToConvert[1] = 0;
-            numbersToConvert[2] = Number(String(minute).charAt(0));
+            numbersToConvert[2] = Number(String(minutes).charAt(0));
         }
 
 
-        if (second >= 10){
-            numbersToConvert[3] = Number(String(second).charAt(0));
-            numbersToConvert[4] = Number(String(second).charAt(1));
+        if (seconds >= 10){
+            numbersToConvert[3] = Number(String(seconds).charAt(0));
+            numbersToConvert[4] = Number(String(seconds).charAt(1));
         }
         else {
             numbersToConvert[3] = 0;
-            numbersToConvert[4] = Number(String(second).charAt(0));
+            numbersToConvert[4] = Number(String(seconds).charAt(0));
         }
 
 
-        if (milisecond >= 100){
-            numbersToConvert[5] = Number(String(milisecond).charAt(0));
+        if (miliseconds >= 100){
+            numbersToConvert[5] = Number(String(miliseconds).charAt(0));
         }
         else {
             numbersToConvert[5] = 0;
@@ -84,12 +84,12 @@ function startTimer() {
         /*
         //alternative way to prepare numbers via maths
 
-        numbersToConvert[0] = hour;
+        numbersToConvert[0] = hours;
         numbersToConvert[1] = 0;  //can't find how to count here
         numbersToConvert[2] = Math.floor(elapsedTime / 60000) - Math.floor(elapsedTime / 600000) * 10;
         numbersToConvert[3] = Math.floor(elapsedTime / 10000) - Math.floor(elapsedTime / 60000) * 6;
         numbersToConvert[4] = Math.floor(elapsedTime / 1000) - Math.floor(elapsedTime / 10000) * 10;
-        numbersToConvert[5] = Math.floor(milisecond / 100);
+        numbersToConvert[5] = Math.floor(miliseconds / 100);
         */
 
         //show numbersToConvert
@@ -140,6 +140,16 @@ function resetTimer() {
     document.getElementsByClassName("numbersToConvert_time")[0].innerHTML = "0:0:0:0:0.0";
     document.getElementsByClassName("binary_time")[0].innerHTML = "0000:0000:0000:0000:0000.0000";
 
-    removeAllCellOn()
+    removeAllCellOn();
     stopedTime = 0;
+}
+
+
+function startTimerFrom() {
+    stopedTime = Number(document.getElementsByClassName("hours")[0].value) * 3600000;
+    stopedTime = stopedTime + Number(document.getElementsByClassName("minutes")[0].value) * 60000;
+    stopedTime = stopedTime + Number(document.getElementsByClassName("seconds")[0].value) * 1000;
+    stopedTime = stopedTime + Number(document.getElementsByClassName("milliseconds")[0].value);
+
+    startTimer();
 }

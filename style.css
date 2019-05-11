@@ -37,7 +37,7 @@
     }
 }
 
-div.timer_detail {
+div.timer_detail, div.start_timer_from {
     display: grid;
     grid-template-columns: repeat(2, 150px);
 }
