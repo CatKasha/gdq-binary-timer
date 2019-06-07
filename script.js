@@ -1,4 +1,6 @@
-let timerId;//for setInterval
+let timerId; //for setInterval
+let timerIsRunning = false;
+
 let binaryTimer = document.getElementById("binary_timer");
 let elapsedTime = 0;
 let stopedTime = 0;
@@ -22,6 +24,13 @@ function removeStandbyBlink() {
 
 
 function startTimer() {
+    //do not start the timer if it is already running
+    if (timerIsRunning == true){
+        return;
+    }
+
+    timerIsRunning = true;
+
     let hours = 0;
     let minutes = 0;
     let seconds = 0;
@@ -128,12 +137,15 @@ function startTimer() {
 
 function stopTimer() {
     clearInterval(timerId);
+    timerIsRunning = false;
+
     stopedTime = elapsedTime;
 }
 
 
 function resetTimer() {
     clearInterval(timerId);
+    timerIsRunning = false;
 
     document.getElementsByClassName("ms_time")[0].innerHTML = 0;
     document.getElementsByClassName("timer_time")[0].innerHTML = "0:0:0.0";
