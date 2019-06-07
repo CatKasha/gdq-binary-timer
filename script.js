@@ -105,13 +105,14 @@ function startTimer() {
         document.getElementsByClassName("numbersToConvert_time")[0].innerHTML = (numbersToConvert[0] + ":" + numbersToConvert[1] +
         ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5]);
 
-        //add missing zeros
+
         for (let i = 0; i < 6; i++){
             numbersToConvert[i] = String(numbersToConvert[i].toString(2));
 
-            let oneItemArray_length = numbersToConvert[i].length;
-            if (oneItemArray_length !== 4){
-                numbersToConvert[i] = "0".repeat(Math.abs(oneItemArray_length - 4)) + numbersToConvert[i];
+            //add missing zeros
+            let numberFromArrayLength = numbersToConvert[i].length;
+            if (numberFromArrayLength !== 4){
+                numbersToConvert[i] = "0".repeat(Math.abs(numberFromArrayLength - 4)) + numbersToConvert[i];
             }
 
             //turn off/on cells
