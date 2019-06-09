@@ -1,9 +1,9 @@
 let timerId; //for setInterval
 let timerIsRunning = false;
-
-let binaryTimer = document.getElementById("binary_timer");
 let elapsedTime = 0;
 let stopedTime = 0;
+
+let binaryTimer = document.getElementById("binary_timer");
 
 
 function removeAllCellOn() {
@@ -28,8 +28,10 @@ function startTimer() {
     if (timerIsRunning == true){
         return;
     }
-
     timerIsRunning = true;
+
+
+    let startTime = Date.now() - stopedTime;
 
     let hours = 0;
     let minutes = 0;
@@ -38,16 +40,9 @@ function startTimer() {
 
     let numbersToConvert = [];
 
-
-    let startTime = Date.now();
-
     timerId = setInterval(function() {
-        if (stopedTime == 0){
-            elapsedTime = Date.now() - startTime;
-        }
-        else{
-            elapsedTime = stopedTime + Date.now() - startTime;
-        }
+        elapsedTime = Date.now() - startTime;
+
         //show miliseconds
         document.getElementsByClassName("ms_time")[0].innerHTML = elapsedTime;
 
@@ -58,7 +53,7 @@ function startTimer() {
         miliseconds = elapsedTime % 1000;
 
         //show timer time
-        document.getElementsByClassName("timer_time")[0].innerHTML = (hours + ":" + minutes + ":" + seconds + "." + miliseconds);
+        document.getElementsByClassName("timer_time")[0].innerHTML = hours + ":" + minutes + ":" + seconds + "." + miliseconds;
 
 
         numbersToConvert[0] = hours;
@@ -72,7 +67,6 @@ function startTimer() {
             numbersToConvert[2] = Number(String(minutes).charAt(0));
         }
 
-
         if (seconds >= 10){
             numbersToConvert[3] = Number(String(seconds).charAt(0));
             numbersToConvert[4] = Number(String(seconds).charAt(1));
@@ -81,7 +75,6 @@ function startTimer() {
             numbersToConvert[3] = 0;
             numbersToConvert[4] = Number(String(seconds).charAt(0));
         }
-
 
         if (miliseconds >= 100){
             numbersToConvert[5] = Number(String(miliseconds).charAt(0));
@@ -102,11 +95,12 @@ function startTimer() {
         */
 
         //show numbersToConvert
-        document.getElementsByClassName("numbersToConvert_time")[0].innerHTML = (numbersToConvert[0] + ":" + numbersToConvert[1] +
-        ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5]);
+        document.getElementsByClassName("numbersToConvert_time")[0].innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
+        ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
 
 
         for (let i = 0; i < 6; i++){
+            //convert number to binary number
             numbersToConvert[i] = String(numbersToConvert[i].toString(2));
 
             //add missing zeros
@@ -124,13 +118,13 @@ function startTimer() {
                 }
                 else {
                     document.getElementsByClassName(cell)[0].classList.remove("cell_on");
-                };
+                }
             }
         }
 
         //show binary time
-        document.getElementsByClassName("binary_time")[0].innerHTML = (numbersToConvert[0] + ":" + numbersToConvert[1] +
-        ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5]);
+        document.getElementsByClassName("binary_time")[0].innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
+        ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
 
     }, 50);
 }
@@ -148,13 +142,13 @@ function resetTimer() {
     clearInterval(timerId);
     timerIsRunning = false;
 
+    removeAllCellOn();
+    stopedTime = 0;
+
     document.getElementsByClassName("ms_time")[0].innerHTML = 0;
     document.getElementsByClassName("timer_time")[0].innerHTML = "0:0:0.0";
     document.getElementsByClassName("numbersToConvert_time")[0].innerHTML = "0:0:0:0:0.0";
     document.getElementsByClassName("binary_time")[0].innerHTML = "0000:0000:0000:0000:0000.0000";
-
-    removeAllCellOn();
-    stopedTime = 0;
 }
 
 
