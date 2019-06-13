@@ -14,11 +14,11 @@ function removeAllCellOn() {
 
 
 function switchStandbyBlink() {
-    if (document.getElementById("standby_blink").checked == true){
-        binaryTimer.classList.add("anim_standby_blink");
+    if (document.getElementById("switch_standby_blink").checked == true){
+        binaryTimer.classList.add("standby_blink");
     }
     else {
-        binaryTimer.classList.remove("anim_standby_blink");
+        binaryTimer.classList.remove("standby_blink");
     }
 }
 
@@ -113,11 +113,11 @@ function startTimer() {
             for (let y = 0; y < 4; y++) {
                 let cell = "cell_" + (y+1) + "_" + (i+1);
 
-                if (numbersToConvert[i].charAt(y) == true) {
-                    document.getElementsByClassName(cell)[0].classList.add("cell_on");
+                if (numbersToConvert[i].charAt(y) == "1") {
+                    document.getElementById(cell).classList.add("cell_on");
                 }
                 else {
-                    document.getElementsByClassName(cell)[0].classList.remove("cell_on");
+                    document.getElementById(cell).classList.remove("cell_on");
                 }
             }
         }
