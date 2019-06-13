@@ -13,13 +13,13 @@ function removeAllCellOn() {
 }
 
 
-function standbyBlink() {
-    binaryTimer.classList.add("anim_standby_blink");
-}
-
-
-function removeStandbyBlink() {
-    binaryTimer.classList.remove("anim_standby_blink");
+function switchStandbyBlink() {
+    if (document.getElementById("standby_blink").checked == true){
+        binaryTimer.classList.add("anim_standby_blink");
+    }
+    else {
+        binaryTimer.classList.remove("anim_standby_blink");
+    }
 }
 
 
