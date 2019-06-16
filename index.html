@@ -5,34 +5,37 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="binary_timer">
-        <div id="cell_1_1"></div>
-        <div id="cell_1_2"></div>
-        <div id="cell_1_3"></div>
-        <div id="cell_1_4"></div>
-        <div id="cell_1_5"></div>
-        <div id="cell_1_6"></div>
+    <div id="display_container">
+        <div id="binary_timer">
+            <div id="cell_1_1"></div>
+            <div id="cell_1_2"></div>
+            <div id="cell_1_3"></div>
+            <div id="cell_1_4"></div>
+            <div id="cell_1_5"></div>
+            <div id="cell_1_6"></div>
 
-        <div id="cell_2_1"></div>
-        <div id="cell_2_2"></div>
-        <div id="cell_2_3"></div>
-        <div id="cell_2_4"></div>
-        <div id="cell_2_5"></div>
-        <div id="cell_2_6"></div>
+            <div id="cell_2_1"></div>
+            <div id="cell_2_2"></div>
+            <div id="cell_2_3"></div>
+            <div id="cell_2_4"></div>
+            <div id="cell_2_5"></div>
+            <div id="cell_2_6"></div>
 
-        <div id="cell_3_1"></div>
-        <div id="cell_3_2"></div>
-        <div id="cell_3_3"></div>
-        <div id="cell_3_4"></div>
-        <div id="cell_3_5"></div>
-        <div id="cell_3_6"></div>
+            <div id="cell_3_1"></div>
+            <div id="cell_3_2"></div>
+            <div id="cell_3_3"></div>
+            <div id="cell_3_4"></div>
+            <div id="cell_3_5"></div>
+            <div id="cell_3_6"></div>
 
-        <div id="cell_4_1"></div>
-        <div id="cell_4_2"></div>
-        <div id="cell_4_3"></div>
-        <div id="cell_4_4"></div>
-        <div id="cell_4_5"></div>
-        <div id="cell_4_6"></div>
+            <div id="cell_4_1"></div>
+            <div id="cell_4_2"></div>
+            <div id="cell_4_3"></div>
+            <div id="cell_4_4"></div>
+            <div id="cell_4_5"></div>
+            <div id="cell_4_6"></div>
+        </div>
+        <div id="binary_timer_opacity"></div>
     </div>
 
     <div class="timer_detail">
@@ -53,9 +56,6 @@
     <button onclick="stopTimer()">Stop</button>
     <button onclick="resetTimer()">Reset</button>
 
-    <input type="checkbox" id="switch_standby_blink" onclick="switchStandbyBlink()">
-    <label for="switch_standby_blink">Standby blink</label>
-
     <br><br>
 
     <button onclick="startTimerFrom()">Start timer from</button>
@@ -65,6 +65,16 @@
         <div>Seconds:</div>      <input type="number" min="0" max="59" value="0" class="seconds">
         <div>Milliseconds:</div> <input type="number" min="0" max="999" value="0" class="milliseconds">
     </div>
+
+    <br>
+
+    <input type="checkbox" id="switch_standby_blink" onclick="switchStandbyBlink()">
+    <label for="switch_standby_blink">Standby blink</label>
+
+    <br>
+
+    <input type="range" id="slider_binary_timer_opacity" min="0" max="1" value="0" step="0.1" oninput="changeBinaryTimerOpacity()">
+    <label for="slider_binary_timer_opacity">Binary timer opacity</label>
 
     <script type="text/javascript" src="script.js"></script>
 </body>

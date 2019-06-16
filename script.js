@@ -23,6 +23,11 @@ function switchStandbyBlink() {
 }
 
 
+function changeBinaryTimerOpacity(){
+    document.getElementById("binary_timer_opacity").style.opacity = document.getElementById("slider_binary_timer_opacity").value;
+}
+
+
 function startTimer() {
     //do not start the timer if it is already running
     if (timerIsRunning == true){

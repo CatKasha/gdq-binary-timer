@@ -1,9 +1,21 @@
-#binary_timer {
-    background-color: black;
+#display_container {
+    display: inline-flex;
+}
+
+#binary_timer, #binary_timer_opacity {
     width: 560px;
     height: 60px;
     padding: 2px;
 
+    background-color: black;
+}
+
+#binary_timer_opacity {
+    position: absolute;
+    opacity: 0;
+}
+
+#binary_timer {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
 }
