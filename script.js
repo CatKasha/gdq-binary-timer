@@ -3,7 +3,7 @@ let timerIsRunning = false;
 let elapsedTime = 0;
 let stopedTime = 0;
 
-let binaryTimer = document.getElementById("binary_timer");
+let binaryTimer = document.getElementById("binary_display");
 
 
 function removeAllCellOn() {
@@ -23,8 +23,8 @@ function switchStandbyBlink() {
 }
 
 
-function changeBinaryTimerOpacity(){
-    document.getElementById("binary_timer_opacity").style.opacity = document.getElementById("slider_binary_timer_opacity").value;
+function changeBinaryDisplayOpacity(){
+    document.getElementById("binary_display_opacity").style.opacity = document.getElementById("slider_binary_display_opacity").value;
 }
 
 
@@ -49,16 +49,16 @@ function startTimer() {
         elapsedTime = Date.now() - startTime;
 
         //show miliseconds
-        document.getElementsByClassName("ms_time")[0].innerHTML = elapsedTime;
+        document.getElementById("ms_time").innerHTML = elapsedTime;
 
 
         hours = Math.floor(elapsedTime / 3600000);
-        minutes = Math.floor(elapsedTime / 60000) - Math.floor(elapsedTime / 3600000) * 60;
-        seconds = Math.floor(elapsedTime / 1000) - Math.floor(elapsedTime / 60000) * 60;
+        minutes = Math.floor((elapsedTime / 60000) % 60);
+        seconds = Math.floor((elapsedTime / 1000) % 60);
         miliseconds = elapsedTime % 1000;
 
         //show timer time
-        document.getElementsByClassName("timer_time")[0].innerHTML = hours + ":" + minutes + ":" + seconds + "." + miliseconds;
+        document.getElementById("timer_time").innerHTML = hours + ":" + minutes + ":" + seconds + "." + miliseconds;
 
 
         numbersToConvert[0] = hours;
@@ -92,15 +92,15 @@ function startTimer() {
         //alternative way to prepare numbers via maths
 
         numbersToConvert[0] = hours;
-        numbersToConvert[1] = 0;  //can't find how to count here
-        numbersToConvert[2] = Math.floor(elapsedTime / 60000) - Math.floor(elapsedTime / 600000) * 10;
-        numbersToConvert[3] = Math.floor(elapsedTime / 10000) - Math.floor(elapsedTime / 60000) * 6;
-        numbersToConvert[4] = Math.floor(elapsedTime / 1000) - Math.floor(elapsedTime / 10000) * 10;
+        numbersToConvert[1] = Math.floor((elapsedTime / 600000) % 6);
+        numbersToConvert[2] = Math.floor((elapsedTime / 60000) % 10);
+        numbersToConvert[3] = Math.floor((elapsedTime / 10000) % 6);
+        numbersToConvert[4] = Math.floor((elapsedTime / 1000) % 10);
         numbersToConvert[5] = Math.floor(miliseconds / 100);
         */
 
         //show numbersToConvert
-        document.getElementsByClassName("numbersToConvert_time")[0].innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
+        document.getElementById("numbersToConvert_time").innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
         ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
 
 
@@ -128,7 +128,7 @@ function startTimer() {
         }
 
         //show binary time
-        document.getElementsByClassName("binary_time")[0].innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
+        document.getElementById("binary_time").innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
         ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
 
     }, 50);
@@ -150,18 +150,18 @@ function resetTimer() {
     removeAllCellOn();
     stopedTime = 0;
 
-    document.getElementsByClassName("ms_time")[0].innerHTML = 0;
-    document.getElementsByClassName("timer_time")[0].innerHTML = "0:0:0.0";
-    document.getElementsByClassName("numbersToConvert_time")[0].innerHTML = "0:0:0:0:0.0";
-    document.getElementsByClassName("binary_time")[0].innerHTML = "0000:0000:0000:0000:0000.0000";
+    document.getElementById("ms_time").innerHTML = 0;
+    document.getElementById("timer_time").innerHTML = "0:0:0.0";
+    document.getElementById("numbersToConvert_time").innerHTML = "0:0:0:0:0.0";
+    document.getElementById("binary_time").innerHTML = "0000:0000:0000:0000:0000.0000";
 }
 
 
 function startTimerFrom() {
-    stopedTime = Number(document.getElementsByClassName("hours")[0].value) * 3600000;
-    stopedTime = stopedTime + Number(document.getElementsByClassName("minutes")[0].value) * 60000;
-    stopedTime = stopedTime + Number(document.getElementsByClassName("seconds")[0].value) * 1000;
-    stopedTime = stopedTime + Number(document.getElementsByClassName("milliseconds")[0].value);
+    stopedTime = Number(document.getElementById("start_timer_from_hours").value) * 3600000;
+    stopedTime = stopedTime + Number(document.getElementById("start_timer_from_minutes").value) * 60000;
+    stopedTime = stopedTime + Number(document.getElementById("start_timer_from_seconds").value) * 1000;
+    stopedTime = stopedTime + Number(document.getElementById("start_timer_from_milliseconds").value);
 
     startTimer();
 }

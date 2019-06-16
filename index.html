@@ -6,7 +6,7 @@
 </head>
 <body>
     <div id="display_container">
-        <div id="binary_timer">
+        <div id="binary_display">
             <div id="cell_1_1"></div>
             <div id="cell_1_2"></div>
             <div id="cell_1_3"></div>
@@ -35,21 +35,21 @@
             <div id="cell_4_5"></div>
             <div id="cell_4_6"></div>
         </div>
-        <div id="binary_timer_opacity"></div>
+        <div id="binary_display_opacity"></div>
     </div>
 
-    <div class="timer_detail">
+    <div class="timer_details">
         <div>Milliseconds:</div>
-        <div class="ms_time">0</div>
+        <div id="ms_time">0</div>
 
         <div>Timer time:</div>
-        <div class="timer_time">0:0:0.0</div>
+        <div id="timer_time">0:0:0.0</div>
 
         <div>Numbers to convert:</div>
-        <div class="numbersToConvert_time">0:0:0:0:0.0</div>
+        <div id="numbersToConvert_time">0:0:0:0:0.0</div>
 
         <div>Binary time:</div>
-        <div class="binary_time">0000:0000:0000:0000:0000.0000</div>
+        <div id="binary_time">0000:0000:0000:0000:0000.0000</div>
     </div>
 
     <button onclick="startTimer()">Start/Resume</button>
@@ -60,10 +60,10 @@
 
     <button onclick="startTimerFrom()">Start timer from</button>
     <div class="start_timer_from">
-        <div>Hours:</div>        <input type="number" min="0" max="15" value="0" class="hours">
-        <div>Minutes:</div>      <input type="number" min="0" max="59" value="0" class="minutes">
-        <div>Seconds:</div>      <input type="number" min="0" max="59" value="0" class="seconds">
-        <div>Milliseconds:</div> <input type="number" min="0" max="999" value="0" class="milliseconds">
+        <div>Hours:</div>        <input type="number" min="0" max="15" value="0" id="start_timer_from_hours">
+        <div>Minutes:</div>      <input type="number" min="0" max="59" value="0" id="start_timer_from_minutes">
+        <div>Seconds:</div>      <input type="number" min="0" max="59" value="0" id="start_timer_from_seconds">
+        <div>Milliseconds:</div> <input type="number" min="0" max="999" value="0" id="start_timer_from_milliseconds">
     </div>
 
     <br>
@@ -73,8 +73,8 @@
 
     <br>
 
-    <input type="range" id="slider_binary_timer_opacity" min="0" max="1" value="0" step="0.1" oninput="changeBinaryTimerOpacity()">
-    <label for="slider_binary_timer_opacity">Binary timer opacity</label>
+    <input type="range" min="0" max="1" step="0.1" value="0" id="slider_binary_display_opacity" oninput="changeBinaryDisplayOpacity()">
+    <label for="slider_binary_display_opacity">Binary display opacity</label>
 
     <script type="text/javascript" src="script.js"></script>
 </body>
