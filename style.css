@@ -1,5 +1,7 @@
 #display_container {
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #binary_display, #binary_display_opacity {
@@ -12,7 +14,25 @@
 
 #binary_display_opacity {
     position: absolute;
-    opacity: 0;
+    opacity: 0.5;
+}
+
+#timer_display {
+    position: absolute;
+    display: flex;
+    align-items: baseline;
+
+    color: white;
+    font-size: 50px;
+    font-family: Arial;
+}
+
+#timer_display_ms {
+    font-size: 30px;
+}
+
+#timer_display.timer_display_off {
+    display: none;
 }
 
 #binary_display {
