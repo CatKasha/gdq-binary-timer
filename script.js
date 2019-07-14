@@ -1,31 +1,24 @@
 let timerId; //for setInterval
 let timerIsRunning = false;
+
 let elapsedTime = 0;
 let stopedTime = 0;
 
 let showTimerDisplay = true;
-let binaryTimer = document.getElementById("binary_display");
-
-
-function removeAllCellOn() {
-    for (let i = 0; i < 24; i++){
-        binaryTimer.children[i].classList.remove("cell_on");
-    }
-}
 
 
 function switchStandbyBlink() {
-    if (document.getElementById("switch_standby_blink").checked == true){
-        binaryTimer.classList.add("standby_blink");
+    if (document.getElementById("switch_standby_blink").checked == true) {
+        document.getElementById("binary_display").classList.add("standby_blink");
     }
     else {
-        binaryTimer.classList.remove("standby_blink");
+        document.getElementById("binary_display").classList.remove("standby_blink");
     }
 }
 
 
 function switchTimerDisplay() {
-    if (document.getElementById("show_timer_display").checked == true){
+    if (document.getElementById("show_timer_display").checked == true) {
         showTimerDisplay = true;
         document.getElementById("timer_display").classList.remove("timer_display_off");
     }
@@ -36,14 +29,14 @@ function switchTimerDisplay() {
 }
 
 
-function changeBinaryDisplayOpacity(){
+function changeBinaryDisplayOpacity() {
     document.getElementById("binary_display_opacity").style.opacity = document.getElementById("slider_binary_display_opacity").value;
 }
 
 
 function startTimer() {
     //do not start the timer if it is already running
-    if (timerIsRunning == true){
+    if (timerIsRunning == true) {
         return;
     }
     timerIsRunning = true;
@@ -57,6 +50,9 @@ function startTimer() {
     let miliseconds = 0;
 
     let numbersToConvert = [];
+    let numberFromArrayLength = 0;
+
+    let cell = "";
 
     timerId = setInterval(function() {
         elapsedTime = Date.now() - startTime;
@@ -76,7 +72,7 @@ function startTimer() {
 
         numbersToConvert[0] = hours;
 
-        if (minutes >= 10){
+        if (minutes >= 10) {
             numbersToConvert[1] = Number(String(minutes).charAt(0));
             numbersToConvert[2] = Number(String(minutes).charAt(1));
         }
@@ -85,7 +81,7 @@ function startTimer() {
             numbersToConvert[2] = Number(String(minutes).charAt(0));
         }
 
-        if (seconds >= 10){
+        if (seconds >= 10) {
             numbersToConvert[3] = Number(String(seconds).charAt(0));
             numbersToConvert[4] = Number(String(seconds).charAt(1));
         }
@@ -94,7 +90,7 @@ function startTimer() {
             numbersToConvert[4] = Number(String(seconds).charAt(0));
         }
 
-        if (miliseconds >= 100){
+        if (miliseconds >= 100) {
             numbersToConvert[5] = Number(String(miliseconds).charAt(0));
         }
         else {
@@ -114,38 +110,40 @@ function startTimer() {
 
         //show numbersToConvert in timer_details
         document.getElementById("numbersToConvert_time").innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
-        ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
+            ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
 
         //show timer time in timer_dispay
-        if (showTimerDisplay == true){
+        if (showTimerDisplay == true) {
             if (hours == 0) {
                 document.getElementById("timer_display_not_ms").innerHTML = String(numbersToConvert[1]) + String(numbersToConvert[2]) +
-                ":" + String(numbersToConvert[3]) + String(numbersToConvert[4]);
+                    ":" + String(numbersToConvert[3]) + String(numbersToConvert[4]);
+
                 document.getElementById("timer_display_ms").innerHTML = "." + String(numbersToConvert[5]);
             }
             else {
                 document.getElementById("timer_display_not_ms").innerHTML = String(hours) + ":" + String(numbersToConvert[1]) + String(numbersToConvert[2]) +
-                ":" + String(numbersToConvert[3]) + String(numbersToConvert[4]);
+                    ":" + String(numbersToConvert[3]) + String(numbersToConvert[4]);
+
                 document.getElementById("timer_display_ms").innerHTML = "." + String(numbersToConvert[5]);
             }
         }
 
 
-        for (let i = 0; i < 6; i++){
+        for (let x = 0; x < 6; x++) {
             //convert number to binary number
-            numbersToConvert[i] = String(numbersToConvert[i].toString(2));
+            numbersToConvert[x] = String(numbersToConvert[x].toString(2));
 
             //add missing zeros
-            let numberFromArrayLength = numbersToConvert[i].length;
-            if (numberFromArrayLength !== 4){
-                numbersToConvert[i] = "0".repeat(Math.abs(numberFromArrayLength - 4)) + numbersToConvert[i];
+            numberFromArrayLength = numbersToConvert[x].length;
+            if (numberFromArrayLength !== 4) {
+                numbersToConvert[x] = "0".repeat(Math.abs(numberFromArrayLength - 4)) + numbersToConvert[x];
             }
 
             //turn off/on cells
             for (let y = 0; y < 4; y++) {
-                let cell = "cell_" + (y+1) + "_" + (i+1);
+                cell = "cell_" + (y + 1) + "_" + (x + 1);
 
-                if (numbersToConvert[i].charAt(y) == "1") {
+                if (numbersToConvert[x].charAt(y) == "1") {
                     document.getElementById(cell).classList.add("cell_on");
                 }
                 else {
@@ -156,7 +154,7 @@ function startTimer() {
 
         //show binary time in timer_details
         document.getElementById("binary_time").innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
-        ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
+            ":" + numbersToConvert[2] + ":" + numbersToConvert[3] + ":" + numbersToConvert[4] + "." + numbersToConvert[5];
 
     }, 50);
 }
@@ -174,8 +172,11 @@ function resetTimer() {
     clearInterval(timerId);
     timerIsRunning = false;
 
-    removeAllCellOn();
     stopedTime = 0;
+
+    for (let i = 0; i < 24; i++) {
+        document.getElementById("binary_display").children[i].classList.remove("cell_on");
+    }
 
     document.getElementById("timer_display_not_ms").innerHTML = "00:00";
     document.getElementById("timer_display_ms").innerHTML = ".0";
