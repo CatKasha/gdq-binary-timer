@@ -70,6 +70,10 @@ function startTimer() {
         document.getElementById("timer_time").innerHTML = hours + ":" + minutes + ":" + seconds + "." + miliseconds;
 
 
+        /*
+        //alternative way to prepare numbers via string magic
+        //i used this method because i did not know at that time how to calculate a number using math
+
         numbersToConvert[0] = hours;
 
         if (minutes >= 10) {
@@ -96,9 +100,7 @@ function startTimer() {
         else {
             numbersToConvert[5] = 0;
         }
-
-        /*
-        //alternative way to prepare numbers via maths
+        */
 
         numbersToConvert[0] = hours;
         numbersToConvert[1] = Math.floor((elapsedTime / 600000) % 6);
@@ -106,7 +108,7 @@ function startTimer() {
         numbersToConvert[3] = Math.floor((elapsedTime / 10000) % 6);
         numbersToConvert[4] = Math.floor((elapsedTime / 1000) % 10);
         numbersToConvert[5] = Math.floor(miliseconds / 100);
-        */
+
 
         //show numbersToConvert in timer_details
         document.getElementById("numbersToConvert_time").innerHTML = numbersToConvert[0] + ":" + numbersToConvert[1] +
